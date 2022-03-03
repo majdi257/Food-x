@@ -10,9 +10,11 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +45,11 @@ public class AdminPanelController implements Initializable {
 
     @FXML
     private JFXTextField firstNametxt;
+        @FXML
+    private JFXTextField lastNametxt1;
+
+    @FXML
+    private JFXTextField firstNametxt1;
     @FXML
     private ListView<String> listview;
   Connection con;
@@ -77,6 +84,28 @@ public class AdminPanelController implements Initializable {
                adminModel.isAdd(fname, lname);
                infoBox(" Added Sucessfully\n Employee Id is:"+adminModel.aid,null,"Success" );
                firstNametxt.clear();
+               lastNametxt.clear();
+                              listview.refresh();
+
+           }
+           
+       } catch (SQLException ex) {
+           infoBox("please fill balnk fields",null,"Alert" );
+           Logger.getLogger(AdminPanelController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      }
+        public void MàdEmployee(ActionEvent event){
+       String fname=firstNametxt1.getText();
+       int lname=Integer.valueOf(lastNametxt1.getText());
+       try {
+           if((fname.isEmpty()|| lname==0 )){
+               infoBox("Enter valid fields",null,"Error");
+           }else{
+               adminModel.isAdd(fname, lname);
+               infoBox("Modifiied Sucessfully\n Employee Id is:"+adminModel.aid,null,"Success" );
+               firstNametxt.clear();
+                              listview.refresh();
+
                lastNametxt.clear();
            }
            
@@ -123,8 +152,50 @@ String listOut = id + "******\"" + name + "*****\"" + prix  ;
             Logger.getLogger(AdminPanelController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
+    public void deleteItem(ActionEvent event){
+       try{
+       int tempMenuid = listview.getSelectionModel().getSelectedIndex() ;
+       }catch(Exception e){
+           infoBox1("no item selected!", null, "Error");
+           
+       }
+          int tempMenuid = listview.getSelectionModel().getSelectedIndex() ;
 
+    if(tempMenuid >= 0){
+        String query = "DELETE FROM menu WHERE  ( menu_id = ? ) ";  
+        PreparedStatement pst;
+           try {              
+               pst = con.prepareStatement(query);
+               pst.setInt(1, tempMenuid);
+               pst.execute();
+               listview.getItems().remove(tempMenuid);
+               listview.refresh();
+               listview.getSelectionModel().clearSelection();
+               
+              
+           } catch (SQLException ex) {
+               Logger.getLogger(AdminPanelController.class.getName()).log(Level.SEVERE, null, ex);
+           }catch(Exception e){
+               infoBox1("no item selected!", null, "Error");
+           }
+               
+       
+    } else {
+        System.out.println("no selction made");
+    }
+}
     
+        
+     public static void infoBox1(String infoMessage, String headerText, String title){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setTitle(title);
+         alert.setHeaderText(headerText);
+         alert.setContentText(infoMessage);
+         alert.showAndWait();
+     }
+     public  void Logout(ActionEvent event){
+         System.exit(0);
+     }
     @FXML
      public void TakeOrderScreen1(ActionEvent event) throws Exception  {
 		Stage primaryStage =new Stage();

@@ -168,7 +168,7 @@ public class PaymentController implements Initializable {
                      }else if(!((monthtxt.getText()).matches("0?[1-9]|1[012]"))){
                          warning.setText("Enter valid month");
                          return;
-                     }else if(!((yeartxt.getText()).matches("1[8-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]"))){
+                     }else if(!((yeartxt.getText()).matches("2[2-9]|3[0-9]|4[0-9]|5[0-9]"))){
                          warning.setText("Enter valid year");
                          return;
                      }else{

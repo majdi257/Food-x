@@ -65,7 +65,7 @@
                      <children>
                         <JFXTextField fx:id="lastNametxt1" focusColor="#ffc656" labelFloat="true" layoutX="86.0" layoutY="194.0" prefHeight="25.0" prefWidth="213.0" promptText="Menu Price" />
                         <JFXTextField fx:id="firstNametxt1" focusColor="#ffc656" labelFloat="true" layoutX="86.0" layoutY="131.0" prefHeight="25.0" prefWidth="213.0" promptText="Menu Name" />
-                        <JFXButton buttonType="RAISED" layoutX="70.0" layoutY="290.0" onAction="#AddEmployee" prefHeight="38.0" prefWidth="273.0" style="-fx-background-color: #f95539;" text="MODIFY MENU" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="70.0" layoutY="290.0" onAction="#MàdEmployee" prefHeight="38.0" prefWidth="273.0" style="-fx-background-color: #f95539;" text="MODIFY MENU" textFill="WHITE">
                            <font>
                               <Font name="SansSerif Regular" size="12.0" />
                            </font>
@@ -92,6 +92,7 @@
                <children>
                   <ListView fx:id="listview" layoutX="66.0" layoutY="212.0" prefHeight="338.0" prefWidth="509.0" />
                   <JFXButton layoutX="234.0" layoutY="132.0" onAction="#TakeOrderScreen1" text="Api" />
+                  <JFXButton layoutX="664.0" layoutY="381.0" onAction="#deleteItem" text="supp" />
                </children>
             </AnchorPane>
         </content>

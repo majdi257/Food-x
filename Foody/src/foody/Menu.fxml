@@ -188,10 +188,10 @@
                                  <children>
                                     <ImageView fitHeight="147.0" fitWidth="200.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/indian-sweet.jpg" />
+                                          <Image url="@../images/fatma.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="27.0" layoutY="139.0" prefHeight="30.0" prefWidth="123.0" text="Gulab Jamun">
+                                    <Label layoutX="27.0" layoutY="139.0" prefHeight="30.0" prefWidth="134.0" text="Fatma fingers">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -229,12 +229,12 @@
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="189.0">
                                  <children>
-                                    <ImageView fitHeight="147.0" fitWidth="200.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="147.0" fitWidth="212.0" layoutX="-25.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/chocolate.jpg" />
+                                          <Image url="@../images/noodles.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="27.0" layoutY="139.0" prefHeight="30.0" prefWidth="145.0" text="Naugat Moose">
+                                    <Label layoutX="27.0" layoutY="139.0" prefHeight="30.0" prefWidth="145.0" text="    Noodles">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -251,10 +251,10 @@
                                  <children>
                                     <ImageView fitHeight="147.0" fitWidth="200.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/naugatmoose.jpg" />
+                                          <Image url="@../images/donut.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="9.0" layoutY="139.0" prefHeight="30.0" prefWidth="163.0" text="Chocolate Moose">
+                                    <Label layoutX="9.0" layoutY="139.0" prefHeight="30.0" prefWidth="163.0" text="         Donuts">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
