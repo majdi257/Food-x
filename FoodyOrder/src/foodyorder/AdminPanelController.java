@@ -85,7 +85,8 @@ public class AdminPanelController implements Initializable {
                infoBox(" Added Sucessfully\n Employee Id is:"+adminModel.aid,null,"Success" );
                firstNametxt.clear();
                lastNametxt.clear();
-                              listview.refresh();
+
+               listview.refresh();
 
            }
            
@@ -104,7 +105,7 @@ public class AdminPanelController implements Initializable {
                adminModel.isAdd(fname, lname);
                infoBox("Modifiied Sucessfully\n Employee Id is:"+adminModel.aid,null,"Success" );
                firstNametxt.clear();
-                              listview.refresh();
+               listview.refresh();
 
                lastNametxt.clear();
            }
@@ -155,6 +156,8 @@ String listOut = id + "******\"" + name + "*****\"" + prix  ;
     public void deleteItem(ActionEvent event){
        try{
        int tempMenuid = listview.getSelectionModel().getSelectedIndex() ;
+        tempMenuid = listview.getSelectionModel().getSelectedIndex() +1 ;
+
        }catch(Exception e){
            infoBox1("no item selected!", null, "Error");
            
@@ -168,6 +171,7 @@ String listOut = id + "******\"" + name + "*****\"" + prix  ;
                pst = con.prepareStatement(query);
                pst.setInt(1, tempMenuid);
                pst.execute();
+
                listview.getItems().remove(tempMenuid);
                listview.refresh();
                listview.getSelectionModel().clearSelection();

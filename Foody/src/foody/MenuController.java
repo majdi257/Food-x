@@ -5,12 +5,15 @@
  */
 package foody;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,9 +37,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -79,15 +85,39 @@ public class MenuController implements Initializable {
     @FXML
     private TableColumn<ModelTable1, String> OrderStatusCol1;
 
-    
-    
+    @FXML
+    private Rating rating1;
+    @FXML
+    private Rating rating2;
+    @FXML
+    private Rating rating3;
+    @FXML
+    private Rating rating4;
+    @FXML
+    private Rating rating5;
+    @FXML
+    private Rating rating6;
+    @FXML
+    private Rating rating7;
+    @FXML
+    private Rating rating8;
+    @FXML
+    private Rating rating9;
+    @FXML
+    private Rating rating10;
+    @FXML
+    private Rating rating11;
+    @FXML
+    private Rating rating12;
+    @FXML
+    private JFXButton stopbtn;
     Connection con; //connection for table 
     
     public static int i;
     
     boolean type;
-    
-    
+               MediaPlayer mediaPlayer ;
+
     ObservableList<ModelTable> obList= FXCollections.observableArrayList();
     ObservableList<ModelTable1> obList1= FXCollections.observableArrayList();
 
@@ -109,7 +139,7 @@ public class MenuController implements Initializable {
              System.out.println("Db not connected");
         }
          
-        
+        music();
          MenuIdCol.setCellValueFactory(new PropertyValueFactory<>("menuid"));
          MenuNameCol.setCellValueFactory(new PropertyValueFactory<>("menuname"));
          PriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -118,7 +148,18 @@ public class MenuController implements Initializable {
          table.refresh();
          table.getSelectionModel().clearSelection();
          calculate();
-         
+         Rate_Init1();
+         Rate_Init2();
+         Rate_Init3();
+         Rate_Init4();
+         Rate_Init5();
+         Rate_Init6();
+         Rate_Init7();
+         Rate_Init8();
+         Rate_Init9();
+         Rate_Init10();
+         Rate_Init11();
+        Rate_Init12();
          QuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity_item"));
                 OrderidCol1.setCellValueFactory(new PropertyValueFactory<>("orderno"));
          MenuNameCol1.setCellValueFactory(new PropertyValueFactory<>("menuname"));  
@@ -131,7 +172,27 @@ public class MenuController implements Initializable {
          
     }
        
+    public void music (){
+    String s = "falfoul.mp3" ;
+    Media h = new  Media(Paths.get(s).toUri().toString());
+    mediaPlayer = new MediaPlayer(h);
+    mediaPlayer.play();
     
+    
+    
+    }
+     public void musicstop (ActionEvent event){
+if (    "Stop".equals(stopbtn.getText())) {
+    mediaPlayer.pause();
+    stopbtn.setText("Play");
+    
+}
+else {
+    stopbtn.setText("Stop");
+    mediaPlayer.play();}
+
+    
+    }
     public void deleteItem(ActionEvent event){
        ModelTable tableIndex = (ModelTable)table.getSelectionModel().getSelectedItem();
        int tempMenuid = -1;
@@ -588,4 +649,557 @@ public class MenuController implements Initializable {
     stage.setScene(new Scene(root1));  
     stage.show();
         }
+    
+    
+    public void Rate_Init1(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=1");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating1.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public void Rate_Init2(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=2");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating2.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+          public void Rate_Init3(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=3");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating3.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+             public void Rate_Init4(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=4");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating4.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+                          public void Rate_Init5(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=5");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating5.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+                                       public void Rate_Init6(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=6");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating6.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public void Rate_Init7(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=7");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating7.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+                                                                 public void Rate_Init8(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=8");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating8.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public void Rate_Init9(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=9");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating9.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public void Rate_Init10(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=10");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating10.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public void Rate_Init11(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=11");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating11.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public void Rate_Init12(){
+        table.getItems().clear();
+        try {
+             
+                  Statement s1 = con.createStatement();
+            ResultSet r1 = s1.executeQuery("select rating_num AS old from rating where  menu_id=12");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            rating12.setRating(old);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       public void update_Rating1(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=1;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=1");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=1");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating1.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+            Rate_Init1();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+       public void update_Rating2(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=2;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=2");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=2");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating2.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+              Rate_Init2();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+              public void update_Rating3(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=3;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=3");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=3");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating3.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+              Rate_Init3();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+                     public void update_Rating4(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=4;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=4");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=4");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating4.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+              Rate_Init4();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+          public void update_Rating5(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=5;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=5");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=5");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating5.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+          Rate_Init5();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+         public void update_Rating6(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=6;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=6");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=6");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating6.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+            Rate_Init6();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+      public void update_Rating7(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=7;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=7");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=7");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating7.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+            Rate_Init7();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ }
+    public void update_Rating8(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=8;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=8");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=8");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating8.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+          Rate_Init8();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+ public void update_Rating9(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=9;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=9");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=9");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating9.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+          Rate_Init9();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+          public void update_Rating10(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=10;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=10");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=10");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating10.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+            Rate_Init10();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+public void update_Rating11(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=11;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=11");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=11");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating11.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+            Rate_Init11();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+        public void update_Rating12(ActionEvent event) throws SQLException{
+         PreparedStatement preparedStatement ;
+         String query="update rating SET rating_num=? , compteur=?  where menu_id=?";
+
+
+        try {
+            Statement s = con.createStatement();
+            int i1=12;
+            preparedStatement =con.prepareStatement(query);
+            ResultSet r = s.executeQuery("select compteur AS cpt from rating where  menu_id=12");
+            r.next();
+            int compt = r.getInt("cpt") ;
+            r.close();
+            Statement s2 = con.createStatement();
+            ResultSet r1 = s2.executeQuery("select rating_num AS old from rating where  menu_id=12");
+            r1.next();
+            double old = r1.getDouble("old") ;
+            r1.close();
+            double rate = rating12.getRating() ;
+            preparedStatement.setDouble(1, (rate+old*compt)/(compt+1));
+            preparedStatement.setInt(2,compt+1 );
+            preparedStatement.setInt(3,i1 );
+            preparedStatement.execute();
+              Rate_Init12();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
 }

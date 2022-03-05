@@ -86,13 +86,13 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Untitled Tab">
+      <Tab text="Supprimer+API">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #29c292;">
                <children>
-                  <ListView fx:id="listview" layoutX="66.0" layoutY="212.0" prefHeight="338.0" prefWidth="509.0" />
-                  <JFXButton layoutX="234.0" layoutY="132.0" onAction="#TakeOrderScreen1" text="Api" />
-                  <JFXButton layoutX="664.0" layoutY="381.0" onAction="#deleteItem" text="supp" />
+                  <ListView fx:id="listview" layoutX="66.0" layoutY="172.0" prefHeight="378.0" prefWidth="566.0" />
+                  <JFXButton layoutX="234.0" layoutY="132.0" onAction="#TakeOrderScreen1" style="-fx-background-color: #f95539;" text="Api" />
+                  <JFXButton layoutX="664.0" layoutY="381.0" onAction="#deleteItem" style="-fx-background-color: #f95539;" text="supp" />
                </children>
             </AnchorPane>
         </content>
