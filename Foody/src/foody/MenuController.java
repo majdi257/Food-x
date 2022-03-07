@@ -5,7 +5,20 @@
  */
 package foody;
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Reader;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -37,11 +50,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 import org.controlsfx.control.Rating;
 
 /**
@@ -111,10 +128,14 @@ public class MenuController implements Initializable {
     private Rating rating12;
     @FXML
     private JFXButton stopbtn;
+       @FXML
+    private JFXButton button;
+       @FXML
+    private JFXTextField QR_Read ;
     Connection con; //connection for table 
     
     public static int i;
-    
+    Stage primaryStage ;
     boolean type;
                MediaPlayer mediaPlayer ;
 
@@ -269,6 +290,13 @@ else {
                 int totalamount=rs.getInt("totalamount");
                 
                 totalAmount.setText(Integer.toString(totalamount));
+                if (   "Valid Code".equals(QR_Read.getText())){
+                    Integer somme = Integer.valueOf(totalAmount.getText());
+                    somme =  somme -  (int)(Math.round(0.1*somme)) ;
+                   totalAmount.setText(Integer.toString(somme));
+
+                }
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
@@ -1202,4 +1230,26 @@ public void update_Rating11(ActionEvent event) throws SQLException{
         }
            
     }
+           public void ReadQR(ActionEvent event) throws IOException, NotFoundException, FormatException, ChecksumException{
+
+  FileChooser fc = new FileChooser () ;
+   fc.setTitle("Open Resource File");
+
+  fc.getExtensionFilters().addAll(
+         new ExtensionFilter("Png Files", "*.png"));
+ File file = fc.showOpenDialog(primaryStage) ;
+
+       BufferedImage barcBufferedImage = ImageIO.read(file);
+       LuminanceSource source = new BufferedImageLuminanceSource(barcBufferedImage) ;
+  BinaryBitmap bitmap  = new BinaryBitmap (new HybridBinarizer(source)) ;
+   Reader reader = new MultiFormatReader();
+   Result result = reader.decode(bitmap);
+   if (result.getText().startsWith("Ilyes")){ 
+      QR_Read.setText("Valid Code");
+      calculate() ;
+   }else {
+        QR_Read.setText("Invalid Code");
+      calculate() ;
+   }
+           }
 }

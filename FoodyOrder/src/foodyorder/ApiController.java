@@ -5,13 +5,18 @@
  */
 package foodyorder;
 
+import com.jfoenix.controls.JFXTextField;
+import static foodyorder.AdminPanelController.infoBox1;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  * FXML Controller class
@@ -20,20 +25,30 @@ import javafx.scene.web.WebView;
  */
 
 public class ApiController implements Initializable {
-
+    @FXML
+    private JFXTextField qrtext;
 @FXML 
-WebView webView ;
-WebEngine engine ;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        engine=webView.getEngine() ;
     }    
        public  void btn1(ActionEvent event){
-    engine.load("https://www.google.com/maps");
+try{
+ByteArrayOutputStream out = QRCode.from("Ilyes"+qrtext.getText()).to(ImageType.PNG).stream() ;
+String f_name = qrtext.getText() ;
+String Path_name = "D:\\";
+FileOutputStream fout = new FileOutputStream (new File(Path_name + (f_name + ".PNG" )));
+fout.write(out.toByteArray());
+fout.flush();
+}
+catch (Exception e) {
+               infoBox1("Error", null, "Error");
+
+
+}
        }
       
 }

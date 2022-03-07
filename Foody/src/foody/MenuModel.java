@@ -124,20 +124,7 @@ public class MenuModel {
         }
         
     }
-    public void update_password(String newpass){
-         PreparedStatement preparedStatement ;
-         String query="update customer SET password =? where customer_id=?";
-         
-        try {
-            preparedStatement =connection.prepareStatement(query);
-            preparedStatement.setString(1, newpass);
-            preparedStatement.setInt(2, MenuController.i);
-            preparedStatement.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-    }
+
     public void update_status_to_confirmed(){
         PreparedStatement preparedStatement;
         String query="update orders set order_status='CONFIRMED' where order_status='ADDED_TO_CART' and customer_id= ?";
