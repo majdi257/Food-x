@@ -76,7 +76,7 @@ public class LoginController implements Initializable {
          }
          String emppass=passtxt.getText();
          
-            if(loginModel.isLogin(empid,emppass )){
+      
                 if(loginModel.isAdmin(empid, emppass)){
                     infoBox("Login Successfull As Admin",null,"Success" );
                 
@@ -88,7 +88,7 @@ public class LoginController implements Initializable {
 		primaryStage.setScene(scene);
                 dialogStage.setScene(scene);
                 dialogStage.show();
-                }else{
+                }else  if(loginModel.isLogin(empid,emppass )){
                  infoBox("Login Successfull as Employee",null,"Success" );
                  Node node = (Node)event.getSource();
                 Stage primaryStage =new Stage();
@@ -99,7 +99,7 @@ public class LoginController implements Initializable {
                 dialogStage.setScene(scene);
                 dialogStage.show();
                 } 
-            }else{
+            else{
                 infoBox("Enter correct id and password",null,"Failed" );
             }
         } catch (SQLException | IOException ex) {

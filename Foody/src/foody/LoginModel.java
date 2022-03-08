@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 
 public class LoginModel {
-    static int customer_id;
+    static int id;
     
     Connection connection;
     public LoginModel(){
@@ -41,29 +41,40 @@ public class LoginModel {
         
     } 
     public boolean isLogin(String email ,String pass) throws SQLException{
-        //int customer_id;
         PreparedStatement preparedStatement = null ;
         ResultSet resultSet =null;
-        String query="select customer_id from customer where email_id=? and password=?";
+        ResultSet resultSet1 =null;
+        String query="select id , status from user where email=? and password=?";
         try{
             preparedStatement =connection.prepareStatement(query);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, pass);
-            resultSet=preparedStatement.executeQuery();
-            if(resultSet.next()){
-                customer_id =resultSet.getInt("customer_id");
-                System.out.println(""+customer_id);
-                LoginController.CustomerId(customer_id);
+
+      resultSet1=preparedStatement.executeQuery();
+resultSet1.next() ;
+
+ int status = resultSet1.getInt("status") ;
+
+  
+resultSet=preparedStatement.executeQuery();
+
+            if(resultSet.next() && (status==1)) {
+                id =resultSet.getInt("id");
+                System.out.println(""+id);
+                LoginController.CustomerId(id);
                 return true;
             }else{
                 return false;
             }
+            
         }catch(SQLException e){
             System.out.println(" no!"+e);
             return false;
         }finally{
             preparedStatement.close();
             resultSet.close();
+            resultSet1.close();
+
         }
         
         

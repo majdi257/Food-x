@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author Ilyes
+ * @author Winston
  */
 public class FXMLDocumentController implements Initializable {
     
@@ -36,7 +36,19 @@ public class FXMLDocumentController implements Initializable {
             // Hide this current window (if this is what you want)
             ((Node)(event.getSource())).getScene().getWindow().hide();
 	}
-
+     @FXML
+      public void signupScreen(ActionEvent event) throws Exception  {
+		Stage primaryStage =new Stage();
+                primaryStage.initStyle(StageStyle.UNDECORATED);
+		Parent root =FXMLLoader.load(getClass().getResource("Signup.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+                
+            // Hide this current window (if this is what you want)
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+	}
+      
       
    
     

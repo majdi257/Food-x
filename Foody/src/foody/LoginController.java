@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
     } 
     
      public static void CustomerId(int cusst){
-        cust_id=LoginModel.customer_id;
+        cust_id=LoginModel.id;
         
     }
     public void Login(ActionEvent event){

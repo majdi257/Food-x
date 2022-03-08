@@ -41,7 +41,7 @@ public class LoginModel {
     public boolean isLogin(int userid,String pass) throws SQLException{
         PreparedStatement preparedStatement = null ;
         ResultSet resultSet =null;
-        String query="select * from restaurant where restaurant_id=? and password=?";
+        String query="select * from user where id=? and password=? and role='EMPLOYEE'";
         try{
             preparedStatement =connection.prepareStatement(query);
             preparedStatement.setInt(1, userid);
@@ -66,7 +66,7 @@ public class LoginModel {
      public boolean isAdmin(int userid,String pass) throws SQLException{
         PreparedStatement preparedStatement = null ;
         ResultSet resultSet =null;
-        String query="select * from restaurant where restaurant_id=? and password=? and designation='ADMIN'";
+        String query="select * from user where id=? and password=? and role='ADMIN'";
         try{
             preparedStatement =connection.prepareStatement(query);
             preparedStatement.setInt(1, userid);
